@@ -1,7 +1,7 @@
 <br>
-<button mat-raised-button color="accent" routerLink="/home"><b>Get back to the list</b></button>
+<button class="back-button" mat-raised-button color="accent" routerLink="/home"><b>Get back to the list</b></button>
 <br>
-
+<br>
 <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
   <div>
@@ -54,5 +54,6 @@
       <input matInput placeholder="Game price" id="price" formControlName="price" type="text" class="form-control"
         required>
   </div>
-  <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit">Add game</button>
+  <br>
+  <button class="submit-button" mat-raised-button color="primary" [disabled]="form.invalid" type="submit">Add game</button>
 </form>

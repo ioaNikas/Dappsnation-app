@@ -1,0 +1,11 @@
+input, select {
+    width: 50%;
+}
+
+.back-button:hover {
+    background-color: #f9e490;
+}
+
+.submit-button:hover {
+    background-color: #8e71b7;
+}

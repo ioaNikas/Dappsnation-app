@@ -1,10 +1,12 @@
+<div class="container">
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span><b>The Videogame Palace</b></span>
     <span class="spacer"></span>
     <button mat-raised-button color="accent" routerLink="/add-game"><b>ADD A GAME</b></button>
-    <p>My shopping cart :</p>
-    <button mat-fab routerLink="/shopping-cart"><i class="material-icons icon">shopping_cart</i><br></button>
+    <p class="item-count">My shopping cart :</p>
+    <button mat-fab routerLink="/shopping-cart"><i class="material-icons icon">shopping_cart</i><br><p class="item-count"><b>{{this.videogameService.getMyCart().length}}</b></p></button>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
+</div>

@@ -26,3 +26,15 @@ h3 {
 .material-icons {
     color: white;
 }
+
+.update-button:hover {
+    background-color: #f9e490;
+}
+
+.detail-button:hover {
+    background-color: #8e71b7;
+}
+
+.remove-button:hover  {
+    background-color: #ea8a83;
+}

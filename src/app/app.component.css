@@ -10,7 +10,7 @@ button {
     flex: 1 1 auto;
 }
 
-p {
+.cart-text {
     font-size: 80%;
     font-weight: bold;
     margin-left: 20px;
@@ -19,4 +19,8 @@ p {
 
 button:hover {
     background-color: #f9e490;
+}
+
+.item-count {
+    margin-top : -5px;
 }
