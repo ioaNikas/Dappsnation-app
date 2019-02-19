@@ -12,11 +12,19 @@ export class ListComponent implements OnInit {
   constructor(private videogameService : VideogameService) { }
 
   public videogameList : Videogame[];
-  public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price'];
+  public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price', 'delete'];
+
+  public isDeleted : boolean = false;
 
   ngOnInit() {
     this.videogameList = this.videogameService.getVideogameList();
     console.log(this.videogameList);
+  }
+
+  removeVideogame(id : string) : void {
+    this.videogameService.removeVideogame(id);
+    this.isDeleted = true;
+    this.videogameList = this.videogameService.getVideogameList();
   }
 
 }

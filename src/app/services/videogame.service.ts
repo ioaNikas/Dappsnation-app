@@ -63,4 +63,10 @@ export class VideogameService {
     this.setLocalStorageVideogameList(videogameList);
   }
 
+  public removeVideogame(id : string) : void {
+    let videogameList = this.getVideogameList();
+    videogameList = videogameList.filter((videogame) => videogame.id != id);
+    this.setLocalStorageVideogameList(videogameList);
+  }
+
 }

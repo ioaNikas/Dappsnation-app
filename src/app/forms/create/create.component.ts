@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class CreateComponent implements OnInit {
 
   public form: FormGroup;
-  public errorMessage: boolean = false;
   public ratingList: string[] = ["E (Everyone)", "10+", "12+", "16+", "18+"];
 
   constructor(
@@ -42,13 +41,9 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.invalid) {
-      this.errorMessage = true;
-    } else {
-      let newGame: Videogame = this.form.value;
-      this.videogameService.addVideogame(newGame);
-      this.router.navigate(['/home']);
-    }
+    let newGame: Videogame = this.form.value;
+    this.videogameService.addVideogame(newGame);
+    this.router.navigate(['/home']);
   }
 
 }
