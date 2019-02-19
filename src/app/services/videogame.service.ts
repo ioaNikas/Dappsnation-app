@@ -115,4 +115,12 @@ export class VideogameService {
     this.setLocalStorageMyCart(myCart);
   }
 
+  public getTotalCost(myCart: Videogame[]) : number {
+    let totalCost : number = 0;
+    for (let i = 0; i < myCart.length; i ++) {
+      totalCost += myCart[i].price;
+    }
+    return totalCost;
+  }
+
 }

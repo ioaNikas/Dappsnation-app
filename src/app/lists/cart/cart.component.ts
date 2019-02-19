@@ -9,21 +9,22 @@ import { Videogame } from 'src/app/classes/videogame';
 })
 export class CartComponent implements OnInit {
 
-  public myCart: Videogame[];
+  public myCart: Videogame[] = this.videogameService.getMyCart();
   public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price', 'details', 'remove'];
 
   public isRemoved: boolean = false;
+  public totalCost: number = this.videogameService.getTotalCost(this.myCart);
 
   constructor(private videogameService: VideogameService) { }
 
   ngOnInit() {
-    this.myCart = this.videogameService.getMyCart();
-    console.log(this.myCart);
   }
 
   removeFromCart(id : string) : void {
     this.videogameService.removeFromCart(id);
     this.myCart = this.videogameService.getMyCart();
+    this.totalCost = this.videogameService.getTotalCost(this.myCart);
     this.isRemoved = true;
   }
+
 }
