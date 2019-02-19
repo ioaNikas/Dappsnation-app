@@ -1,7 +1,7 @@
 <br>
 <button mat-raised-button color="accent" routerLink="/home"><b>Get back to the list</b></button>
 <br>
-
+<p *ngIf="isRemoved == true">The game has successfully been removed from your cart.</p>
 <table mat-table [dataSource]="myCart" class="mat-elevation-z8">
 
     <ng-container matColumnDef="title">
@@ -30,15 +30,9 @@
           class="material-icons">description</i> </td>
     </ng-container>
   
-    <ng-container matColumnDef="update">
-      <th mat-header-cell *matHeaderCellDef>Update</th>
-      <td class="action-cell" mat-cell *matCellDef="let videogame"> <i [routerLink]="['update-game', videogame.id]"
-          class="material-icons">games</i> </td>
-    </ng-container>
-  
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef>Delete</th>
-      <td class="action-cell" mat-cell *matCellDef="let videogame"> <i
+    <ng-container matColumnDef="remove">
+      <th mat-header-cell *matHeaderCellDef>Remove</th>
+      <td class="action-cell" mat-cell *matCellDef="let videogame"> <i (click)="removeFromCart(videogame.id)"
           class="material-icons">delete_forever</i> </td>
     </ng-container>
   

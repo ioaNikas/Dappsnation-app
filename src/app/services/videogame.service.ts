@@ -108,5 +108,11 @@ export class VideogameService {
     myCart.push(videogame)
     this.setLocalStorageMyCart(myCart);
   }
-  
+
+  public removeFromCart(id : string) : void {
+    let myCart = this.getMyCart();
+    myCart = myCart.filter((videogame) => videogame.id != id);
+    this.setLocalStorageMyCart(myCart);
+  }
+
 }

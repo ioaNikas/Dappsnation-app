@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'home/update-game/:id', component: UpdateComponent },
   { path: 'home/game-details/:id', component: GameDetailsComponent },
   { path: 'shopping-cart', component: CartComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'shopping-cart/game-details/:id', component: GameDetailsComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({
