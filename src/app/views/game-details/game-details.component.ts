@@ -22,4 +22,8 @@ export class GameDetailsComponent implements OnInit {
     this.videogame = this.videogameService.getVideogame(id);
   }
 
+  addToCart(videogame : Videogame) {
+    this.videogameService.addToCart(videogame);
+  }
+
 }

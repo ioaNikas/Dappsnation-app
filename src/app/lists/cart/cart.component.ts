@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VideogameService } from 'src/app/services/videogame.service';
+import { Videogame } from 'src/app/classes/videogame';
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  public myCart: Videogame[];
+  public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price', 'details', 'update', 'delete'];
+
+  constructor(private videogameService: VideogameService) { }
 
   ngOnInit() {
+    this.myCart = this.videogameService.getMyCart();
+    console.log(this.myCart);
   }
-
 }
