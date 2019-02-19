@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 
 import {
   MatButtonModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTableModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +28,8 @@ import { UpdateComponent } from './forms/update/update.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

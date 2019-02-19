@@ -42,7 +42,9 @@ export class VideogameService {
     },
   ]
 
-  constructor() { }
+  constructor() { 
+    let videogameList = this.getVideogameList();
+  }
 
   public setLocalStorageVideogameList(videogameList: Videogame[]): void {
     localStorage.setItem('videogameList', JSON.stringify({ videogameList}));

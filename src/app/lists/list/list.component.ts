@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VideogameService } from 'src/app/services/videogame.service';
+import { Videogame } from 'src/app/classes/videogame';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private videogameService : VideogameService) { }
+
+  public videogameList : Videogame[];
+  public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price'];
 
   ngOnInit() {
+    this.videogameList = this.videogameService.getVideogameList();
+    console.log(this.videogameList);
   }
 
 }
