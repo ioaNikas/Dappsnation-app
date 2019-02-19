@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   constructor(private videogameService : VideogameService) { }
 
   public videogameList : Videogame[];
-  public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price', 'update', 'delete'];
+  public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price', 'details', 'update', 'delete'];
 
   public isDeleted : boolean = false;
 

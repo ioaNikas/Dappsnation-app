@@ -8,7 +8,8 @@ import {
   MatToolbarModule,
   MatTableModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatCardModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { ListComponent } from './lists/list/list.component';
 import { CartComponent } from './lists/cart/cart.component';
 import { CreateComponent } from './forms/create/create.component';
 import { UpdateComponent } from './forms/update/update.component';
+import { GameDetailsComponent } from './views/game-details/game-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { UpdateComponent } from './forms/update/update.component';
     ListComponent,
     CartComponent,
     CreateComponent,
-    UpdateComponent
+    UpdateComponent,
+    GameDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { UpdateComponent } from './forms/update/update.component';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
