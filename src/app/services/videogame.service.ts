@@ -8,7 +8,7 @@ export class VideogameService {
 
   public dummyList: Videogame[] = [
     {
-      id: "1",
+      id: this.generateRandomId(),
       title: "20XX",
       genre: "Action",
       developer: "Fire Hose Games",
@@ -19,7 +19,7 @@ export class VideogameService {
       price: 19.99
     },
     {
-      id: "2",
+      id: this.generateRandomId(),
       title: "Rocket League",
       genre: "Sport",
       developer: "Psyonix Inc",
@@ -30,7 +30,7 @@ export class VideogameService {
       price: 19.99
     },
     {
-      id: "3",
+      id: this.generateRandomId(),
       title: "Starbound",
       genre: "Adventure",
       developer: "Chucklefish",
@@ -70,8 +70,7 @@ export class VideogameService {
 
   public addVideogame(videogame: Videogame): void {
     let videogameList = this.getVideogameList();
-    let id: number = videogameList.length + 1;
-    videogame.id = id.toString();
+    videogame.id = this.generateRandomId();
     videogameList.push(videogame);
     this.setLocalStorageVideogameList(videogameList);
   }
@@ -105,6 +104,7 @@ export class VideogameService {
   
   public addToCart(videogame : Videogame) : void {
     let myCart = this.getMyCart();
+    videogame.id = this.generateRandomId();
     myCart.push(videogame)
     this.setLocalStorageMyCart(myCart);
   }
@@ -122,5 +122,11 @@ export class VideogameService {
     }
     return totalCost;
   }
+
+  //// OTHER METHODS ////
+
+  private generateRandomId() : string {
+    return Math.random().toString(36).substr(2, 9);
+  };
 
 }
