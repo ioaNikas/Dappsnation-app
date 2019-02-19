@@ -1,0 +1,22 @@
+.icon {
+    padding: 0 10px;
+}
+
+button {
+  margin-left: 20px;
+}
+  
+.spacer {
+    flex: 1 1 auto;
+}
+
+p {
+    font-size: 80%;
+    font-weight: bold;
+    margin-left: 20px;
+    margin-right: -10px;
+}
+
+button:hover {
+    background-color: #f9e490;
+}
