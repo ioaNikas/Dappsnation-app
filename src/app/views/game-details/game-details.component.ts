@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Videogame } from 'src/app/classes/videogame';
 import { VideogameService } from 'src/app/services/videogame.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-details',
@@ -15,15 +15,17 @@ export class GameDetailsComponent implements OnInit {
   constructor(
     private videogameService: VideogameService,
     private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.params['id'];
-    this.videogame = this.videogameService.getVideogame(id);
+    const title = this.route.snapshot.params['title'];
+    this.videogame = this.videogameService.getVideogame(title);
   }
 
   addToCart(videogame : Videogame) {
     this.videogameService.addToCart(videogame);
+    this.router.navigate(['/shopping-cart']);
   }
 
 }

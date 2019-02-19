@@ -6,3 +6,23 @@ th.mat-header-cell {
     font-weight: bolder;
     font-size: 90%;
 }
+
+.sucess-message {
+    font-weight: bolder;
+    color: green;
+    text-align: center;
+}
+
+.nogames-message {
+    font-weight: bolder;
+    color: #6C36B3;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.material-icons {
+    color: white;
+}

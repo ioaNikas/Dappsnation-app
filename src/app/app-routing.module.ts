@@ -10,9 +10,9 @@ const routes: Routes = [
   { path: 'home', component: ListComponent },
   { path: 'add-game', component: CreateComponent },
   { path: 'home/update-game/:id', component: UpdateComponent },
-  { path: 'home/game-details/:id', component: GameDetailsComponent },
+  { path: 'home/game-details/:title', component: GameDetailsComponent },
   { path: 'shopping-cart', component: CartComponent },
-  { path: 'shopping-cart/game-details/:id', component: GameDetailsComponent },
+  { path: 'shopping-cart/game-details/:title', component: GameDetailsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

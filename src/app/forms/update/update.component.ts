@@ -26,7 +26,7 @@ export class UpdateComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
-    this.videogame = this.videogameService.getVideogame(id);
+    this.videogame = this.videogameService.getVideogameById(id);
 
     this.form.setValue({
       title: this.videogame.title,

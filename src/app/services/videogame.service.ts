@@ -57,7 +57,18 @@ export class VideogameService {
     return localStorageItem == null ? this.dummyList : localStorageItem.videogameList;
   }
 
-  public getVideogame(id: string): Videogame {
+  public getVideogame(title: string): Videogame {
+    let videogameList = this.getVideogameList();
+    let videogame = new Videogame;
+    for (let i = 0; i < videogameList.length; i++) {
+      if (videogameList[i].title == title) {
+        videogame = videogameList[i];
+      }
+    }
+    return videogame;
+  }
+
+  public getVideogameById(id: string): Videogame {
     let videogameList = this.getVideogameList();
     let videogame = new Videogame;
     for (let i = 0; i < videogameList.length; i++) {
