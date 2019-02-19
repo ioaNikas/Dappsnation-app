@@ -55,4 +55,12 @@ export class VideogameService {
     return localStorageItem == null ? this.dummyList : localStorageItem.videogameList;
   }
 
+  public addVideogame(videogame : Videogame) : void {
+    let videogameList = this.getVideogameList();
+    let id : number = videogameList.length +1;
+    videogame.id = id.toString();
+    videogameList.push(videogame);
+    this.setLocalStorageVideogameList(videogameList);
+  }
+
 }
