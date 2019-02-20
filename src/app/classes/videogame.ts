@@ -7,5 +7,5 @@ export class Videogame {
     genre : string;
     releaseDate : string;
     rating : string;
-    price : number;
+    price : string;
 }

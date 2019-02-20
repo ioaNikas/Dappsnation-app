@@ -16,7 +16,7 @@ export class VideogameService {
       releaseDate: "16/08/2016",
       rating: "E",
       cover: "https://www.mobygames.com/images/covers/l/493281-20xx-xbox-one-front-cover.jpg",
-      price: 19.99
+      price: "19.99"
     },
     {
       id: this.generateRandomId(),
@@ -27,7 +27,7 @@ export class VideogameService {
       releaseDate: "07/07/2015",
       rating: "E",
       cover: "https://www.mobygames.com/images/covers/l/441545-rocket-league-xbox-one-front-cover.jpg",
-      price: 19.99
+      price: "19.99"
     },
     {
       id: this.generateRandomId(),
@@ -38,7 +38,7 @@ export class VideogameService {
       releaseDate: "22/07/2016",
       rating: "T",
       cover: "https://gpstatic.com/acache/37/31/1/fr/packshot-d8b1c95b799532bb9da622a92cafd17d.jpg",
-      price: 13.99
+      price: "13.99"
     },
   ]
 
@@ -140,9 +140,9 @@ export class VideogameService {
   public getTotalCost(myCart: Videogame[]) : number {
     let totalCost : number = 0;
     for (let i = 0; i < myCart.length; i ++) {
-      totalCost += myCart[i].price;
+      totalCost += parseFloat(myCart[i].price);
     }
-    return totalCost;
+    return Math.round(totalCost * 100) / 100;
   }
 
   //// OTHER METHODS ////
