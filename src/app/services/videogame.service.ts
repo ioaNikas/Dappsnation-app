@@ -68,6 +68,17 @@ export class VideogameService {
     return videogame;
   }
 
+  public getNextGame(title : string): Videogame {
+    let videogameList = this.getVideogameList();
+    let videogame = new Videogame;
+    for (let i = 0; i < videogameList.length; i++) {
+      if (videogameList[i].title == title) {
+        videogame = videogameList[i+1];
+      }
+    }
+    return videogame;
+  }
+
   public getVideogameById(id: string): Videogame {
     let videogameList = this.getVideogameList();
     let videogame = new Videogame;
