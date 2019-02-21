@@ -11,9 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class GameDetailsComponent implements OnInit {
 
+  private _title : string;
   public videogame: Videogame;
-  private _title: string;
-  private nextTitle: string;
   game$;
 
   constructor(
@@ -25,7 +24,7 @@ export class GameDetailsComponent implements OnInit {
   ngOnInit() {
     this.game$ = this.route.params.pipe(
       map(params => params['title']),
-      map(title => this.videogameService.getVideogame(title))
+      map(_title => this.videogameService.getVideogame(_title))
     );
 }
 
@@ -40,7 +39,7 @@ export class GameDetailsComponent implements OnInit {
     } else {
       this._title = this.videogameService.getVideogameList()[0].title;
     }
-    this.router.navigate(['/home/game-details', this._title]);
+    this.router.navigate(['/home/game-details', this.game$.title]);
     console.log(this._title);
   }
 

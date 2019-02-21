@@ -19,6 +19,7 @@ import { CartComponent } from './lists/cart/cart.component';
 import { CreateComponent } from './forms/create/create.component';
 import { UpdateComponent } from './forms/update/update.component';
 import { GameDetailsComponent } from './views/game-details/game-details.component';
+import { ErrorComponent } from './views/error/error.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { GameDetailsComponent } from './views/game-details/game-details.componen
     CartComponent,
     CreateComponent,
     UpdateComponent,
-    GameDetailsComponent
+    GameDetailsComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
