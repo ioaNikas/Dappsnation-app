@@ -25,3 +25,10 @@ button:hover {
 .item-count {
     margin-top : -5px;
 }
+
+.toolbar-title {
+    padding: 5px;
+    border-radius : 5px;
+    color: #f9d84f;
+    text-shadow: 2px 2px black;
+}

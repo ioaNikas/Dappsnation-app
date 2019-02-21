@@ -1,5 +1,5 @@
 <br>
-<button mat-raised-button color="accent" routerLink="/home"><b>Get back to the list</b></button>
+<button mat-raised-button class="back-button" color="accent" routerLink="/home"><b>Get back to the list</b></button>
 <br>
 
 <section *ngIf="game$ | async as videogame">
@@ -21,9 +21,9 @@
 
       <h4>Price : {{videogame.price}} €</h4>
   </mat-card-content>
-  <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="addToCart(videogame)">Add to my cart</button>
-          <button mat-raised-button color="primary" (click)="viewNextGame()">View next game</button>
+  <mat-card-actions class="action-buttons">
+          <button mat-raised-button class ="add-button" color="primary" (click)="addToCart(videogame)">Add to my cart</button>
+          <!-- <button mat-raised-button color="primary" (click)="viewNextGame()">View next game</button> -->
   </mat-card-actions>
 </mat-card>
 </section>

@@ -1,4 +1,16 @@
 mat-card {
-    width: 30%;
+    width: 40%;
     margin: auto;
+}
+
+.back-button:hover {
+    background-color: #f9e490;
+}
+
+.add-button:hover {
+    background-color: #8e71b7;
+}
+
+.action-buttons {
+    text-align: center;
 }
