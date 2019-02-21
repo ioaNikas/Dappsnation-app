@@ -38,3 +38,16 @@ h3 {
 .remove-button:hover  {
     background-color: #ea8a83;
 }
+
+img {
+    width: 150px;
+}
+
+.action-button {
+    margin-top: 10px;
+}
+
+.action-text {
+    font-weight: bold;
+    margin-left: 10px;
+}
