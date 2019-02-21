@@ -28,3 +28,7 @@ table {
 .remove-button:hover  {
     background-color: #ea8a83;
 }
+
+p {
+    font-size : 80%;
+}

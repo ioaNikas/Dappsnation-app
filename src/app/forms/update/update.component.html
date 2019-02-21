@@ -28,14 +28,16 @@
   </div>
 
   <div>
-      <label for="genre">Genre</label>
-      <input matInput placeholder="Game genre" id="genre" formControlName="genre" type="text" class="form-control"
-        required>
-  </div>
+    <label for="genre">Genre</label>
+    <select placeholder="Game genre" id="genre" formControlName="genre" type="text" class="form-control"
+      required>
+      <option *ngFor="let genre of genreList">{{genre}}</option>
+    </select>
+</div>
 
   <div>
       <label for="releaseDate">Release date</label>
-      <input matInput placeholder="Release date" id="releaseDate" formControlName="releaseDate" type="text" class="form-control"
+      <input matInput placeholder="DD/MM/YYYY" id="releaseDate" formControlName="releaseDate" type="text" class="form-control"
         required>
   </div>
 

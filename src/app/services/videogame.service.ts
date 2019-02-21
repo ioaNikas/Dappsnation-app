@@ -14,7 +14,7 @@ export class VideogameService {
       developer: "Fire Hose Games",
       publisher: "Batterystaple Games",
       releaseDate: "16/08/2016",
-      rating: "E",
+      rating: "10+",
       cover: "https://www.mobygames.com/images/covers/l/493281-20xx-xbox-one-front-cover.jpg",
       price: "19.99"
     },
@@ -25,7 +25,7 @@ export class VideogameService {
       developer: "Psyonix Inc",
       publisher: "Psyonix Inc",
       releaseDate: "07/07/2015",
-      rating: "E",
+      rating: "E (Everyone)",
       cover: "https://www.mobygames.com/images/covers/l/441545-rocket-league-xbox-one-front-cover.jpg",
       price: "19.99"
     },
@@ -36,10 +36,32 @@ export class VideogameService {
       developer: "Chucklefish",
       publisher: "Chucklefish",
       releaseDate: "22/07/2016",
-      rating: "T",
+      rating: "12+",
       cover: "https://gpstatic.com/acache/37/31/1/fr/packshot-d8b1c95b799532bb9da622a92cafd17d.jpg",
       price: "13.99"
     },
+    {
+      id: this.generateRandomId(),
+      title: "World of Warcraft",
+      genre: "MMORPG",
+      developer: "Blizzard",
+      publisher: "Blizzard",
+      releaseDate: "23/11/2004",
+      rating: "12+",
+      cover: "https://media.ign.com/games/image/object/016/016985/world-of-warcraft-1_PCMAC.jpg",
+      price: "39.99"
+    },
+    {
+      id: this.generateRandomId(),
+      title: "The Witcher 3 : Wild Hunt",
+      genre: "RPG",
+      developer: "CD Projekt RED",
+      publisher: "Bandai Namco (Europe) / WB Games (US)",
+      releaseDate: "19/05/2015",
+      rating: "18+",
+      cover: "https://media.ign.com/games/image/object/016/016985/world-of-warcraft-1_PCMAC.jpg",
+      price: "49.99"
+    }
   ]
 
   constructor() {

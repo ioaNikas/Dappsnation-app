@@ -13,6 +13,7 @@ export class CreateComponent implements OnInit {
 
   public form: FormGroup;
   public ratingList: string[] = ["E (Everyone)", "10+", "12+", "16+", "18+"];
+  public genreList: string[] = ["Action", "Adventure", "FPS", "Hack'n'Slash", "MMORPG", "MOBA", "Point'n'Click", "Puzzles", "Racing", "RPG", "Sandbox", "Simulation", "STR", "Sport", "Survival horror", "TCG", "TPS"]
 
   constructor(
     private videogameService: VideogameService,

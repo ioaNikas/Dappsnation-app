@@ -18,7 +18,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.videogameList = this.videogameService.getVideogameList();
-    console.log(this.videogameList);
   }
 
   removeVideogame(id : string) : void {

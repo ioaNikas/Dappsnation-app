@@ -23,7 +23,8 @@ button:hover {
 }
 
 .item-count {
-    margin-top : -5px;
+    margin-top: -5px;
+    font-size: 75%;
 }
 
 .toolbar-title {
@@ -31,4 +32,9 @@ button:hover {
     border-radius : 5px;
     color: #f9d84f;
     text-shadow: 2px 2px black;
+    cursor: pointer;
+}
+
+.full-body {
+    background-color: white;
 }
