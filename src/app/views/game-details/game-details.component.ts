@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Videogame } from 'src/app/classes/videogame';
 import { VideogameService } from 'src/app/services/videogame.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-game-details',
@@ -13,6 +14,7 @@ export class GameDetailsComponent implements OnInit {
   public videogame: Videogame;
   private _title: string;
   private nextTitle: string;
+  game$;
 
   constructor(
     private videogameService: VideogameService,
@@ -21,11 +23,11 @@ export class GameDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      this._title = params.get('title');
-      this.videogame = this.videogameService.getVideogame(this._title);
-    })
-  }
+    this.game$ = this.route.params.pipe(
+      map(params => params['title']),
+      map(title => this.videogameService.getVideogame(title))
+    );
+}
 
   addToCart(videogame: Videogame) {
     this.videogameService.addToCart(videogame);

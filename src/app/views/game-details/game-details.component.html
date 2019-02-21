@@ -2,6 +2,8 @@
 <button mat-raised-button color="accent" routerLink="/home"><b>Get back to the list</b></button>
 <br>
 
+<section *ngIf="game$ | async as videogame">
+
 <mat-card class="example-card wrapper">
   <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -24,3 +26,4 @@
           <button mat-raised-button color="primary" (click)="viewNextGame()">View next game</button>
   </mat-card-actions>
 </mat-card>
+</section>
