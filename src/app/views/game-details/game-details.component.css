@@ -1,6 +1,7 @@
 mat-card {
     width: 40%;
     margin: auto;
+    background-color: #F1E7FB;
 }
 
 .back-button:hover {

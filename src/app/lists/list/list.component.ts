@@ -14,7 +14,7 @@ export class ListComponent implements OnInit {
   public videogameList : Videogame[];
   public displayedColumns: string[] = ['cover', 'informations', 'actions'];
 
-  public isDeleted : boolean = false;
+  public isDeleted : boolean = false; // boolean showing message when a game is removed from the list.
 
   ngOnInit() {
     this.videogameList = this.videogameService.getVideogameList();

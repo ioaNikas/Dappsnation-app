@@ -5,6 +5,8 @@ import { Videogame } from '../classes/videogame';
   providedIn: 'root'
 })
 export class VideogameService {
+  
+  //// GENERIC LIST IF LOCALSTORAGE IS EMPTY ////
 
   public dummyList: Videogame[] = [
     {
@@ -59,7 +61,7 @@ export class VideogameService {
       publisher: "Bandai Namco (Europe) / WB Games (US)",
       releaseDate: "19/05/2015",
       rating: "18+",
-      cover: "https://media.ign.com/games/image/object/016/016985/world-of-warcraft-1_PCMAC.jpg",
+      cover: "http://image.jeuxvideo.com/medias-sm/142247/1422469608-7141-jaquette-avant.jpg",
       price: "49.99"
     }
   ]
@@ -159,6 +161,10 @@ export class VideogameService {
     this.setLocalStorageMyCart(myCart);
   }
 
+  public removeAll() : void {
+    this.setLocalStorageMyCart([]);
+  }
+
   public getTotalCost(myCart: Videogame[]) : number {
     let totalCost : number = 0;
     for (let i = 0; i < myCart.length; i ++) {
@@ -170,7 +176,7 @@ export class VideogameService {
   //// OTHER METHODS ////
 
   private generateRandomId() : string {
-    return Math.random().toString(36).substr(2, 9);
+    return Math.random().toString(36).substr(2, 9); // generate a random string so we can't guess next id
   };
 
 }

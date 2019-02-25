@@ -1,19 +1,26 @@
 <div class="body-list">
+
+  <!-- TITLE AND MESSAGES -->
+
   <div class="header-text">
-    <h3>Stay awhile, and take a look to our awesome games</h3>
+    <h3>Stay awhile, and take a look at our awesome games</h3>
     <p class="nogames-message" *ngIf="videogameList.length == 0">There are no games in our store, come back later guys.
     </p>
-    <p class="sucess-message" *ngIf="isDeleted == true">The game has successfully been deleted.</p>
+    <p class="success-message" *ngIf="isDeleted == true">The game has successfully been deleted.</p>
   </div>
 
 
   <table *ngIf="videogameList.length > 0" mat-table [dataSource]="videogameList" class="mat-elevation-z8">
+
+    <!-- GAME COVER -->
 
     <ng-container matColumnDef="cover">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let videogame"><img [routerLink]="['game-details', videogame.title]"
           src="{{videogame.cover}}" alt="Videogame Cover"></td>
     </ng-container>
+
+    <!-- GAME INFORMATIONS -->
 
     <ng-container matColumnDef="informations">
       <th mat-header-cell *matHeaderCellDef></th>
@@ -24,6 +31,8 @@
           {{videogame.price}} €</p>
       </td>
     </ng-container>
+
+    <!-- BOARD ACTIONS -->
 
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
@@ -53,3 +62,4 @@
 
   </table>
 </div>
+<br>

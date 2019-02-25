@@ -1,5 +1,6 @@
 table {
     width : 100%;
+    background-color: #f1e8fc;
 }
 
 th.mat-header-cell {
@@ -7,16 +8,18 @@ th.mat-header-cell {
     font-size: 90%;
 }
 
-.sucess-message {
+.success-message {
     font-weight: bolder;
     color: green;
     text-align: center;
+    font-size: 50%;
 }
 
 .nogames-message {
     font-weight: bolder;
     color: #6C36B3;
     text-align: center;
+    font-size: 70%;
 }
 
 h3 {
@@ -41,9 +44,11 @@ h3 {
 
 img {
     width: 150px;
-    border-left: 5px solid #6C36B3;
-    border-right: 5px solid #6C36B3;
+    border: 3px solid #6C36B3;
     cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    box-shadow: 2px 2px 2px;
 }
 
 .action-button {

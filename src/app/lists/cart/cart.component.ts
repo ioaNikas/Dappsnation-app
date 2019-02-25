@@ -20,8 +20,15 @@ export class CartComponent implements OnInit {
   ngOnInit() {
   }
 
-  removeFromCart(id : string) : void {
+  removeFromCart(id: string): void {
     this.videogameService.removeFromCart(id);
+    this.myCart = this.videogameService.getMyCart();
+    this.totalCost = this.videogameService.getTotalCost(this.myCart);
+    this.isRemoved = true;
+  }
+
+  removeAll(): void {
+    this.videogameService.removeAll();
     this.myCart = this.videogameService.getMyCart();
     this.totalCost = this.videogameService.getTotalCost(this.myCart);
     this.isRemoved = true;

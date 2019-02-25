@@ -29,6 +29,19 @@ table {
     background-color: #ea8a83;
 }
 
+.remove-all-button {
+    background-color: red;
+    color: white;
+}
+
+.remove-all-button:hover  {
+    background-color: #ea8a83;
+}
+
 p {
     font-size : 80%;
+}
+
+h3 {
+    text-align: center;
 }

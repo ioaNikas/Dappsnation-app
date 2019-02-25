@@ -14,7 +14,7 @@ export class UpdateComponent implements OnInit {
   public videogame: Videogame;
   public form: FormGroup;
   public ratingList: string[] = ["E (Everyone)", "10+", "12+", "16+", "18+"];
-  public genreList: string[] = ["Action", "Adventure", "FPS", "Hack'n'Slash", "MMORPG", "MOBA", "Point'n'Click", "Puzzles", "Racing", "RPG", "Sandbox", "Simulation", "STR", "Sport", "Survival horror", "TCG", "TPS"]
+  public genreList: string[] = ["Action", "Adventure", "Battle Royale", "FPS", "Hack'n'Slash", "MMORPG", "MOBA", "Point'n'Click", "Puzzles", "Racing", "RPG", "Sandbox", "Simulation", "STR", "Sport", "Survival horror", "TCG", "TPS"]
 
   constructor(
     private videogameService: VideogameService,
@@ -22,7 +22,18 @@ export class UpdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
   ) {
-    this.form = this.updateForm();
+    this.form = this.formBuilder.group(
+      {
+        title: [null, Validators.required],
+        developer: [null, Validators.required],
+        publisher: [null, Validators.required],
+        genre: [null, Validators.required],
+        releaseDate: [null, Validators.required],
+        rating: [null, Validators.required],
+        cover: [null],
+        price: [null, Validators.required]
+      } 
+    )
    }
 
   ngOnInit() {
@@ -39,21 +50,6 @@ export class UpdateComponent implements OnInit {
       cover: this.videogame.cover,
       price: this.videogame.price
     });
-  }
-
-  updateForm(): FormGroup {
-    return this.formBuilder.group(
-      {
-        title: [null, Validators.required],
-        developer: [null, Validators.required],
-        publisher: [null, Validators.required],
-        genre: [null, Validators.required],
-        releaseDate: [null, Validators.required],
-        rating: [null, Validators.required],
-        cover: [null],
-        price: [null, Validators.required]
-      } 
-    )
   }
 
   onSubmit(): void {
