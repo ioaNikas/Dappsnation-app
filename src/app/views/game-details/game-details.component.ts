@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Videogame } from 'src/app/classes/videogame';
+import { Videogame } from 'src/app/classes/Videogame';
 import { VideogameService } from 'src/app/services/videogame.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
