@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { VideogameService } from './services/videogame.service';
+import { VideogameStore } from './videogame/+state';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,15 @@ import { VideogameService } from './services/videogame.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Dappsnation-app';
+  public title = 'Dappsnation-app';
 
-  constructor(public videogameService : VideogameService) { }
+  constructor(
+    private videogameStore: VideogameStore,
+    private router: Router,
+    ) { }
 
+  public addVideogame() {
+    this.videogameStore.setActive(null);
+    this.router.navigate(['/form/add']);
+  }
 }

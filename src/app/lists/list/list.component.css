@@ -1,11 +1,5 @@
-table {
-    width : 100%;
-    background-color: #f1e8fc;
-}
-
-th.mat-header-cell {
-    font-weight: bolder;
-    font-size: 90%;
+mat-card {
+  margin: 5% 5%;
 }
 
 .success-message {
@@ -43,21 +37,19 @@ h3 {
 }
 
 img {
-    width: 150px;
+    width: 300px;
     border: 3px solid #6C36B3;
     cursor: pointer;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    box-shadow: 2px 2px 2px;
 }
 
 .action-button {
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .action-text {
     font-weight: bold;
-    margin-left: 10px;
+    font-size: 30%;
 }
 
 .informations {

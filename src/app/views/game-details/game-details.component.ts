@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Videogame } from 'src/app/classes/Videogame';
-import { VideogameService } from 'src/app/services/videogame.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { Videogame, VideogameQuery } from 'src/app/videogame/+state';
+import { CartItemService } from 'src/app/cart/+state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game-details',
@@ -11,36 +12,21 @@ import { map } from 'rxjs/operators';
 })
 export class GameDetailsComponent implements OnInit {
 
-  private _title : string;
-  public videogame: Videogame;
-  game$;
+  public videogame$: Observable<Videogame>;
 
   constructor(
-    private videogameService: VideogameService,
-    private route: ActivatedRoute,
+    private cartItemService: CartItemService,
+    private videogameQuery: VideogameQuery,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    this.game$ = this.route.params.pipe(
-      map(params => params['title']),
-      map(_title => this.videogameService.getVideogame(_title))
-    );
-}
-
-  addToCart(videogame: Videogame) {
-    this.videogameService.addToCart(videogame);
-    this.router.navigate(['/shopping-cart']);
+    this.videogame$ = this.videogameQuery.selectActive();
   }
 
-  viewNextGame() {
-    if (this.videogameService.getVideogameList().indexOf(this.videogameService.getNextGame(this._title)) < this.videogameService.getVideogameList().length) {
-      this._title = this.videogameService.getNextGame(this._title).title;
-    } else {
-      this._title = this.videogameService.getVideogameList()[0].title;
-    }
-    this.router.navigate(['/home/game-details', this.game$.title]);
-    console.log(this._title);
+  public addToCart(videogame: Videogame) {
+    this.cartItemService.addItemToCart(videogame);
+    this.router.navigate(['/shopping-cart']);
   }
 
 }

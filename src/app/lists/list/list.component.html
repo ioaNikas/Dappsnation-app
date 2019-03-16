@@ -4,62 +4,40 @@
 
   <div class="header-text">
     <h3>Stay awhile, and take a look at our awesome games</h3>
-    <p class="nogames-message" *ngIf="videogameList.length == 0">There are no games in our store, come back later guys.
-    </p>
     <p class="success-message" *ngIf="isDeleted == true">The game has successfully been deleted.</p>
   </div>
 
-
-  <table *ngIf="videogameList.length > 0" mat-table [dataSource]="videogameList" class="mat-elevation-z8">
-
-    <!-- GAME COVER -->
-
-    <ng-container matColumnDef="cover">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      <td mat-cell *matCellDef="let videogame"><img [routerLink]="['game-details', videogame.title]"
-          src="{{videogame.cover}}" alt="Videogame Cover"></td>
-    </ng-container>
-
-    <!-- GAME INFORMATIONS -->
-
-    <ng-container matColumnDef="informations">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let videogame">
-        <p class="informations"><span class="game-title">{{videogame.title}}</span><br>
-          Genre : {{videogame.genre}} <br>
-          Release date : {{videogame.releaseDate}} <br>
-          {{videogame.price}} €</p>
-      </td>
-    </ng-container>
-
-    <!-- BOARD ACTIONS -->
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let videogame">
-        <div class="action-button">
-          <button class="detail-button" color="primary" mat-mini-fab [routerLink]="['game-details', videogame.title]">
-            <i class="material-icons">description</i>
+<div fxLayout="row wrap" fxLayoutAlign="space-around">
+  <mat-card *ngFor="let videogame of videogameList$ | async">
+    <mat-card-header>
+      <mat-card-title>{{videogame.title}}</mat-card-title>
+      <mat-card-subtitle>{{videogame.genre}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{videogame.cover}}" alt="Videogame cover" (click)="selectVideogame(videogame)">
+    <mat-card-content>
+      <p>{{videogame.price}}</p>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="space-around">
+        <span class="action-button">
+          <button class="detail-button" color="primary" mat-raised-button (click)="selectVideogame(videogame)">
+            Game details
           </button>
-          <span class="action-text">Game details</span>
-        </div>
-        <div class="action-button">
-          <button class="update-button" mat-mini-fab [routerLink]="['update-game', videogame.id]">
-            <i class="material-icons">games</i>
+        </span>
+        <span class="action-button">
+          <button class="update-button"color="accent" mat-raised-button (click)="updateVideogame(videogame)">
+            Update game
           </button>
-          <span class="action-text">Update game</span>
-        </div>
-        <div class="action-button">
-          <button class="remove-button" color="warn" mat-mini-fab (click)="removeVideogame(videogame.id)">
-            <i class="material-icons">delete_forever</i>
+        </span>
+        <span class="action-button">
+          <button class="remove-button" color="warn" mat-raised-button (click)="deleteVideogame(videogame)">
+            Remove game
           </button>
-          <span class="action-text">Remove game</span>
-        </div>
-      </td>
-    </ng-container>
-
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
+        </span>
+    </mat-card-actions>
+  </mat-card>
 </div>
+  <ng-template #empty >
+      <p class="nogames-message">There are no games in our store, come back later guys.</p>
+  </ng-template>
 <br>
+</div>

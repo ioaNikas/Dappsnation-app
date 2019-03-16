@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VideogameService } from 'src/app/services/videogame.service';
-import { Videogame } from 'src/app/classes/videogame';
+import { CartItem } from 'src/app/cart/+state/cartItem.model';
+import { CartItemService } from 'src/app/cart/+state/cartItem.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -9,28 +10,20 @@ import { Videogame } from 'src/app/classes/videogame';
 })
 export class CartComponent implements OnInit {
 
-  public myCart: Videogame[] = this.videogameService.getMyCart();
+  public myCart$: Observable<CartItem[]>;
   public displayedColumns: string[] = ['title', 'genre', 'releaseDate', 'price', 'details', 'remove'];
 
-  public isRemoved: boolean = false;
-  public totalCost: number = this.videogameService.getTotalCost(this.myCart);
+  public isRemoved = false;
+  //public totalCost: number = this.cartItemService.getTotalCost(this.myCart$);
 
-  constructor(private videogameService: VideogameService) { }
+  constructor(private cartItemService: CartItemService) { }
 
   ngOnInit() {
+    this.myCart$ = this.cartItemService.cartItemt$;
   }
 
-  removeFromCart(id: string): void {
-    this.videogameService.removeFromCart(id);
-    this.myCart = this.videogameService.getMyCart();
-    this.totalCost = this.videogameService.getTotalCost(this.myCart);
-    this.isRemoved = true;
-  }
-
-  removeAll(): void {
-    this.videogameService.removeAll();
-    this.myCart = this.videogameService.getMyCart();
-    this.totalCost = this.videogameService.getTotalCost(this.myCart);
+  removeItemFromCart(cartItem: CartItem) {
+    this.cartItemService.removeItemFromCart(cartItem);
     this.isRemoved = true;
   }
 

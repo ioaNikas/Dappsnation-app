@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { VideogameService } from 'src/app/services/videogame.service';
-import { Videogame } from 'src/app/classes/Videogame';
+import { VideogameService, Videogame, VideogameQuery, VideogameStore } from 'src/app/videogame/+state';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -9,21 +10,36 @@ import { Videogame } from 'src/app/classes/Videogame';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private videogameService : VideogameService) { }
+  constructor(
+    private videogameService: VideogameService,
+    private videogameQuery: VideogameQuery,
+    private videogameStore: VideogameStore,
+    private router: Router,
+    ) { }
 
-  public videogameList : Videogame[];
+  public videogameList$: Observable<Videogame[]>;
   public displayedColumns: string[] = ['cover', 'informations', 'actions'];
+  public isDeleted = false; // boolean showing message when a game is removed from the list.
 
-  public isDeleted : boolean = false; // boolean showing message when a game is removed from the list.
+  public dataSource = this.videogameList$;
 
   ngOnInit() {
-    this.videogameList = this.videogameService.getVideogameList();
+    this.videogameList$ = this.videogameQuery.videogameList$;
   }
 
-  removeVideogame(id : string) : void {
-    this.videogameService.removeVideogame(id);
+  public deleteVideogame(videogame: Videogame) {
+    this.videogameService.deleteVideogame(videogame);
     this.isDeleted = true;
-    this.videogameList = this.videogameService.getVideogameList();
+  }
+
+  public selectVideogame(videogame: Videogame) {
+    this.videogameStore.setActive(videogame.id);
+    this.router.navigate(['/game-details/', videogame.id]);
+  }
+
+  public updateVideogame(videogame: Videogame) {
+    this.videogameStore.setActive(videogame.id);
+    this.router.navigate(['/form/', videogame.id]);
   }
 
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Videogame } from 'src/app/classes/videogame';
-import { VideogameService } from 'src/app/services/videogame.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { VideogameService } from '../../videogame/+state/videogame.service';
+import { Observable } from 'rxjs';
+import { Videogame } from 'src/app/videogame/+state/videogame.model';
+import { VideogameQuery } from 'src/app/videogame/+state';
 
 @Component({
   selector: 'app-create',
@@ -12,39 +14,40 @@ import { Router } from '@angular/router';
 export class CreateComponent implements OnInit {
 
   public form: FormGroup;
+  public videogame$: Observable<Videogame>;
+  public videogameId: string;
   public ratingList: string[] = ["E (Everyone)", "10+", "12+", "16+", "18+"];
   public genreList: string[] = ["Action", "Adventure", "Battle Royale", "FPS", "Hack'n'Slash", "MMORPG", "MOBA", "Point'n'Click", "Puzzles", "Racing", "RPG", "Sandbox", "Simulation", "STR", "Sport", "Survival horror", "TCG", "TPS"]
 
   constructor(
     private videogameService: VideogameService,
+    private videogameQuery: VideogameQuery,
     private formBuilder: FormBuilder,
-    private router: Router,
-  ) {
-    this.form = this.createSignupForm();
-  }
+    ) {}
 
   ngOnInit() {
+    this.videogame$ = this.videogameQuery.selectActive();
+
+    this.form = this.formBuilder.group({
+      title: ['', Validators.required],
+      developer: ['', Validators.required],
+      publisher: [''],
+      genre: ['', Validators.required],
+      releaseDate: ['', Validators.required],
+      rating: ['', Validators.required],
+      cover: [''],
+      price: ['', Validators.required],
+    });
+
+    this.videogame$.subscribe(value => value ? this.form.patchValue(value) : this.form.reset());
   }
 
-  createSignupForm(): FormGroup {
-    return this.formBuilder.group(
-      {
-        title: [null, Validators.required],
-        developer: [null, Validators.required],
-        publisher: [null, Validators.required],
-        genre: [null, Validators.required],
-        releaseDate: [null, Validators.required],
-        rating: [null, Validators.required],
-        cover: [null],
-        price: [null, Validators.required]
-      }
-    )
+  public addVideogame() {
+    this.videogameService.addVideogame(this.form.value);
   }
 
-  onSubmit() {
-    let newGame: Videogame = this.form.value;
-    this.videogameService.addVideogame(newGame);
-    this.router.navigate(['/home']);
+  public updateVideogame(videogame: Videogame) {
+    this.videogameService.updateVideogame(videogame, this.form.value);
   }
 
 }

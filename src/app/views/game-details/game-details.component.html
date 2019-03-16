@@ -2,28 +2,27 @@
 <button mat-raised-button class="back-button" color="accent" routerLink="/home"><b>Get back to the list</b></button>
 <br>
 
-<section *ngIf="game$ | async as videogame">
+<section *ngIf="videogame$ | async as videogame">
 
 <mat-card class="example-card wrapper">
   <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{videogame.title}}</mat-card-title>
-      <mat-card-subtitle>Genre : {{videogame.genre}}</mat-card-subtitle>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{videogame.title}}</mat-card-title>
+    <mat-card-subtitle>Genre : {{videogame.genre}}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="{{videogame.cover}}" alt="Videogame Cover">
   <mat-card-content>
-      <ul>
-          <li>Developed by : {{videogame.developer}}</li>
-          <li>Published by : {{videogame.publisher}}</li>
-          <li>Released : {{videogame.releaseDate}}</li>
-          <li>Rated : {{videogame.rating}}</li>
-      </ul>
+    <ul>
+        <li>Developed by : {{videogame.developer}}</li>
+        <li>Published by : {{videogame.publisher}}</li>
+        <li>Released : {{videogame.releaseDate}}</li>
+        <li>Rated : {{videogame.rating}}</li>
+    </ul>
 
-      <h4>Price : {{videogame.price}} €</h4>
+    <h4>Price : {{videogame.price}} €</h4>
   </mat-card-content>
   <mat-card-actions class="action-buttons">
-          <button mat-raised-button class ="add-button" color="primary" (click)="addToCart(videogame)">Add to my cart</button>
-          <!-- <button mat-raised-button color="primary" (click)="viewNextGame()">View next game</button> -->
+    <button mat-raised-button class ="add-button" color="primary" (click)="addToCart(videogame)">Add to my cart</button>
   </mat-card-actions>
 </mat-card>
 </section>

@@ -3,9 +3,9 @@
   <mat-toolbar-row>
     <span class="toolbar-title" routerLink="/home"><b>THE VIDEOGAME PALACE</b></span>
     <span class="spacer"></span>
-    <button mat-raised-button color="accent" routerLink="/add-game"><b>ADD A GAME</b></button>
+    <button mat-raised-button color="accent" (click)="addVideogame()"><b>ADD A GAME</b></button>
     <p class="cart-text">My shopping cart :</p>
-    <button mat-fab routerLink="/shopping-cart"><i class="material-icons icon">shopping_cart</i><br><p class="item-count"><b>{{this.videogameService.getMyCart().length}}</b></p></button>
+    <button mat-fab routerLink="/shopping-cart"><i class="material-icons icon">shopping_cart</i><br><p class="item-count"><b>number</b></p></button>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
