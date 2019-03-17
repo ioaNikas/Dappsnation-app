@@ -3,30 +3,31 @@ import { createCartItem, CartItem } from './cartItem.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Videogame } from 'src/app/videogame/+state';
 import { CartItemStore } from './cartItem.store';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 import { CartItemQuery } from './cartItem.query';
+import { AuthQuery } from 'src/app/auth/+state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartItemService {
 
+  public userCart$ = this.authQuery.select(state => state.user).pipe(
+    switchMap(user => this.db.collection<CartItem>('cart', ref => ref.where('customerId', '==', user.id)
+          )
+          .valueChanges()
+          .pipe(tap(cartItems => this.cartItemStore.set(cartItems)))
+    )
+  );
+
   constructor(
     private db: AngularFirestore,
     private cartItemStore: CartItemStore,
-    private cartItemQuery: CartItemQuery,
-  ) {
-    this.fetch();
-  }
+    private authQuery: AuthQuery,
+  ) {}
 
-  public fetch() {
-    this.db.collection<CartItem>('cart').valueChanges().subscribe((cartItems: CartItem[]) => {
-      this.cartItemStore.set(cartItems);
-    });
-  }
-
-  public addItemToCart(videogame: Videogame) {
-    const cartItem = createCartItem({...videogame, id: this.db.createId(), videogameId: videogame.id});
+  public addItemToCart(videogame: Videogame, _customerId) {
+    const cartItem = createCartItem({...videogame, id: this.db.createId(), videogameId: videogame.id, customerId: _customerId});
     this.db.collection<CartItem>('cart').doc(cartItem.id).set(cartItem);
   }
 
