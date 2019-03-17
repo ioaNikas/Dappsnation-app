@@ -5,3 +5,8 @@
 .submit-button:hover {
     background-color: #8e71b7;
 }
+
+form {
+  margin: auto;
+  width: 50%;
+}

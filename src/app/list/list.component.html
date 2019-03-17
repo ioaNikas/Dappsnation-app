@@ -13,9 +13,11 @@
       <mat-card-title>{{videogame.title}}</mat-card-title>
       <mat-card-subtitle>{{videogame.genre}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{videogame.cover}}" alt="Videogame cover" (click)="selectVideogame(videogame)">
+    <mat-card-content class="image">
+      <img mat-card-image src="{{videogame.cover}}" alt="Videogame cover" (click)="selectVideogame(videogame)">
+    </mat-card-content>
     <mat-card-content>
-      <p>{{videogame.price}}</p>
+      <p>{{videogame.price}} €</p>
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="space-around">
         <span class="action-button">

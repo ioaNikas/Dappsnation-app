@@ -8,6 +8,8 @@ import { CartItem } from './cartItem.model';
 })
 export class CartItemQuery extends QueryEntity<State, CartItem> {
 
+  public cart$ = this.selectAll();
+
   constructor(protected store: CartItemStore) {
     super(store);
   }

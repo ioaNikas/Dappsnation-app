@@ -1,5 +1,5 @@
 mat-card {
-  margin: 5% 5%;
+  margin-bottom: 3%;
 }
 
 .success-message {
@@ -38,8 +38,11 @@ h3 {
 
 img {
     width: 300px;
+    height: 400px;
     border: 3px solid #6C36B3;
     cursor: pointer;
+    object-fit: cover;
+    margin: auto;
 }
 
 .action-button {

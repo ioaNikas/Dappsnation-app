@@ -3,7 +3,7 @@ import { createVideogame, Videogame } from './videogame.model';
 import { VideogameStore } from './videogame.store';
 import { VideogameQuery } from './videogame.query';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,22 +11,14 @@ import { Observable } from 'rxjs';
 })
 export class VideogameService {
 
-  public videogameCollection: AngularFirestoreCollection<Videogame>;
-  public collectionName = 'videogames';
+  public videogameList$ = this.db.collection<Videogame>('videogames').valueChanges().pipe(
+    tap(videogames => this.videogameStore.set(videogames))
+  );
 
   constructor(
     private videogameStore: VideogameStore,
-    private videogameQuery: VideogameQuery,
     private db: AngularFirestore,
   ) {
-    this.videogameCollection = this.db.collection<Videogame>(this.collectionName);
-    this.fetch();
-  }
-
-  public fetch() {
-    this.videogameCollection.valueChanges().subscribe((videogames: Videogame[]) => {
-      this.videogameStore.set(videogames);
-    });
   }
 
   public addVideogame(_videogame: Partial<Videogame>) {
@@ -35,21 +27,17 @@ export class VideogameService {
       id: this.db.createId()
     });
     this.videogameStore.add(videogame);
-    return this.videogameCollection.doc(videogame.id).set(videogame);
+    return this.db.collection<Videogame>('videogames').doc(videogame.id).set(videogame);
   }
 
   public updateVideogame(videogame: Videogame, form) {
     videogame = {...videogame, ...form};
-    return this.videogameCollection.doc(videogame.id).update(videogame);
+    return this.db.collection<Videogame>('videogames').doc(videogame.id).update(videogame);
   }
 
   public deleteVideogame(videogame: Videogame) {
-    return this.videogameCollection.doc(videogame.id).delete();
+    return this.db.collection<Videogame>('videogames').doc(videogame.id).delete();
   }
 
-  public getVideogame(id: string): Observable<Videogame> {
-    return this.videogameCollection.doc(id).get().pipe(
-      map(videogame => videogame.data() as Videogame)
-    );
-  }
 }
+

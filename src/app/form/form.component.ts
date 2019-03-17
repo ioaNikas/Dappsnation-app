@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { VideogameService } from '../../videogame/+state/videogame.service';
+import { VideogameService } from '../videogame/+state/videogame.service';
 import { Observable } from 'rxjs';
 import { Videogame } from 'src/app/videogame/+state/videogame.model';
 import { VideogameQuery } from 'src/app/videogame/+state';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
-export class CreateComponent implements OnInit {
+export class FormComponent implements OnInit {
 
   public form: FormGroup;
   public videogame$: Observable<Videogame>;
   public videogameId: string;
-  public ratingList: string[] = ["E (Everyone)", "10+", "12+", "16+", "18+"];
-  public genreList: string[] = ["Action", "Adventure", "Battle Royale", "FPS", "Hack'n'Slash", "MMORPG", "MOBA", "Point'n'Click", "Puzzles", "Racing", "RPG", "Sandbox", "Simulation", "STR", "Sport", "Survival horror", "TCG", "TPS"]
+  public ratingList: string[] = ['E (Everyone)', '10+', '12+', '16+', '18+'];
+  public genreList: string[] = ['Action', 'Adventure', 'Battle Royale', 'FPS', 'Hack\'n\'Slash', 'MMORPG',
+   'MOBA', 'Point\'n\'Click', 'Puzzles', 'Racing', 'RPG', 'Sandbox', 'Simulation', 'STR', 'Sport', 'Survival horror', 'TCG', 'TPS']
 
   constructor(
     private videogameService: VideogameService,
     private videogameQuery: VideogameQuery,
     private formBuilder: FormBuilder,
+    private router: Router,
     ) {}
 
   ngOnInit() {
@@ -44,10 +46,12 @@ export class CreateComponent implements OnInit {
 
   public addVideogame() {
     this.videogameService.addVideogame(this.form.value);
+    this.router.navigate(['/home']);
   }
 
   public updateVideogame(videogame: Videogame) {
     this.videogameService.updateVideogame(videogame, this.form.value);
+    this.router.navigate(['/home']);
   }
 
 }

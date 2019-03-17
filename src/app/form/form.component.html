@@ -14,13 +14,21 @@
       <input matInput type="text" placeholder="Game publisher" formControlName="publisher"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Game genre" formControlName="genre"/>
+      <mat-select placeholder="Game genre" formControlName="genre">
+        <mat-option *ngFor="let genre of genreList" [value]="genre">
+          {{genre}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="text" placeholder="Game release date" formControlName="releaseDate"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Game rating" formControlName="rating"/>
+      <mat-select placeholder="Game age rating" formControlName="rating">
+        <mat-option *ngFor="let rating of ratingList" [value]="rating">
+          {{rating}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="text" placeholder="Game cover" formControlName="cover"/>
@@ -28,7 +36,7 @@
     <mat-form-field>
       <input matInput type="text" placeholder="Game price" formControlName="price"/>
     </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Update {{videogame.title}}</button>
+  <button mat-raised-button color="primary" type="submit" class="submit-button">Update {{videogame.title}}</button>
   </form>
 
 <ng-template #empty>
@@ -43,13 +51,21 @@
       <input matInput type="text" placeholder="Game publisher" formControlName="publisher"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Game genre" formControlName="genre"/>
+      <mat-select placeholder="Game genre" formControlName="genre">
+        <mat-option *ngFor="let genre of genreList" [value]="genre">
+          {{genre}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="text" placeholder="Game release date" formControlName="releaseDate"/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" placeholder="Game rating" formControlName="rating"/>
+      <mat-select placeholder="Game age rating" formControlName="rating">
+        <mat-option *ngFor="let rating of ratingList" [value]="rating">
+          {{rating}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field>
       <input matInput type="text" placeholder="Game cover" formControlName="cover"/>
@@ -57,6 +73,6 @@
     <mat-form-field>
       <input matInput type="text" placeholder="Game price" formControlName="price"/>
     </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Add videogame</button>
+  <button mat-raised-button color="primary" type="submit" class="submit-button">Add videogame</button>
   </form>
 </ng-template>

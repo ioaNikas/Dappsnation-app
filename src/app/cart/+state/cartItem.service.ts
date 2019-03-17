@@ -1,31 +1,37 @@
 import { Injectable } from '@angular/core';
 import { createCartItem, CartItem } from './cartItem.model';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Videogame } from 'src/app/videogame/+state';
 import { CartItemStore } from './cartItem.store';
+import { tap } from 'rxjs/operators';
 import { CartItemQuery } from './cartItem.query';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartItemService {
 
-  public cartItemCollection: AngularFirestoreCollection<CartItem>;
-  public collectionName = 'cart';
-  public cartItemt$ = this.cartItemQuery.selectAll();
-
   constructor(
+    private db: AngularFirestore,
     private cartItemStore: CartItemStore,
     private cartItemQuery: CartItemQuery,
-    private db: AngularFirestore,
   ) {
-    this.cartItemCollection = this.db.collection<CartItem>(this.collectionName);
+    this.fetch();
   }
 
-  public addItemToCart(_cartItem: CartItem) {
-    const cartItem = createCartItem({..._cartItem, id: this.db.createId()});
+  public fetch() {
+    this.db.collection<CartItem>('cart').valueChanges().subscribe((cartItems: CartItem[]) => {
+      this.cartItemStore.set(cartItems);
+    });
+  }
+
+  public addItemToCart(videogame: Videogame) {
+    const cartItem = createCartItem({...videogame, id: this.db.createId(), videogameId: videogame.id});
+    this.db.collection<CartItem>('cart').doc(cartItem.id).set(cartItem);
   }
 
   public removeItemFromCart(cartItem: CartItem) {
-    return this.cartItemCollection.doc(cartItem.id).delete();
+    this.db.collection<CartItem>('cart').doc(cartItem.id).delete();
   }
+
 }

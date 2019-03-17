@@ -5,6 +5,7 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import 'hammerjs';
+import { persistState, akitaConfig } from '@datorama/akita';
 
 if (environment.production) {
   enableProdMode();
@@ -12,3 +13,9 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
+
+  persistState({
+  });
+  akitaConfig({
+    resettable: true
+  });
